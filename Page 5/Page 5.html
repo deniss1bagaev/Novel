@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel</title>
+    <link rel="stylesheet" href="./Page 5.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body>
+
+    <div id="black-screen">
+        <h1>Please press F11 to continue</h1>
+    </div>
+
+    <a href="../Page 4/Page 4.html" class="back-btn">Назад</a>
+
+    <div id="container" class="video">
+        <iframe
+            id="my-video"
+            src="https://www.youtube.com/embed/JuyOh3m7we4?enablejsapi=1&autoplay=1&controls=1&vq=hd1080&rel=0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        // Переменная для плеера
+        var player;
+
+        // Эта функция запускается автоматически, когда API YouTube готов
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('my-video', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // Когда плеер готов, запускаем проверку экрана
+        function onPlayerReady(event) {
+            checkFullscreen();
+        }
+
+        function checkFullscreen() {
+            const blackScreen = document.getElementById('black-screen');
+            const isBrowserFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+            const isHeightFullscreen = Math.abs(window.screen.height - window.innerHeight) < 20;
+            
+            // Проверяем, существует ли плеер и готов ли он принимать команды
+            const isPlayerReady = player && typeof player.playVideo === 'function';
+
+            if (isBrowserFullscreen || isHeightFullscreen) {
+                // Если F11 включен:
+                blackScreen.classList.add('hidden'); // Убираем черный экран
+                if (isPlayerReady) {
+                    player.playVideo(); // ЗАПУСКАЕМ ВИДЕО
+                }
+            } else {
+                // Если F11 выключен:
+                blackScreen.classList.remove('hidden'); // Показываем черный экран
+                if (isPlayerReady) {
+                    player.pauseVideo(); // СТАВИМ НА ПАУЗУ
+                }
+            }
+        }
+
+        window.addEventListener('resize', checkFullscreen);
+        window.addEventListener('load', checkFullscreen);
+        setInterval(checkFullscreen, 500);
+    </script>
+</body>
+</html>

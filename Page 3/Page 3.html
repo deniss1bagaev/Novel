@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel</title>
+    <link rel="stylesheet" href="./Page 3.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="black-screen">
+        <h1>Please press F11 to continue</h1>
+    </div>
+
+    <div class="board-wrapper">
+        <div class="grid-container">
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Ишвари Гейл.png" alt="Картинка 5">
+                </a>
+                <div class="text">Ішварі — нещасна жертва, яку спокусив злісний Мохан Гейл. Наш улюблений вождь намагався власноруч врятувати її з полону Мохана. На жаль, вона вважала за краще втекти до Штатів, ніж розкрити обійми милості Пейгана.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Лонгин.png" alt="Картинка 6">
+                </a>
+                <div class="text">Цей релігійний фанатик — небезпечний провокатор, який наживається на заворушеннях у нашій славній країні. Він стверджує, ніби «знайшов друге народження», але не вірте йому. Він — вбивця, контрабандист і відомий пособник Золотого шляху.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Мохан-Гейл.png" alt="Картинка 7">
+                </a>
+                <div class="text">Министерство социальной гармонии объявило Мохана Гейла возмутителем спокойствия. Гейл основал Золотой путь, эту шайку предателей и яро пытался убить нашего любимого вождя Пэйгана.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Дарпан.png" alt="Картинка 8">
+                </a>
+                <div class="text">Це терорист до мозку кісток. Він стояв біля отруєних витоків Золотого шляху і більшу частину свого життя витратив на те, щоб по можливості зіпсувати всі добрі починання Пейгана.</div>
+            </div>
+
+        </div>
+        
+        <a href="../Page 2/Page 2.html" class="custom-btn btn-back">
+            <span></span>Назад
+        </a>
+
+        <a href="../Page 4/Page 4.html" class="custom-btn btn-next">
+            <span></span>Вперед
+        </a>
+    </div>
+
+    <script>
+        function checkFullscreen() {
+            const blackScreen = document.getElementById('black-screen');
+            
+            // 1. Проверка через API браузера
+            const isBrowserFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+
+            // 2. Проверка через геометрию окна
+            const heightDiff = Math.abs(window.screen.height - window.innerHeight);
+            const isHeightFullscreen = heightDiff < 20;
+
+            if (isBrowserFullscreen || isHeightFullscreen) {
+                blackScreen.classList.add('hidden');
+            } else {
+                blackScreen.classList.remove('hidden');
+            }
+        }
+
+        window.addEventListener('resize', checkFullscreen);
+        window.addEventListener('load', checkFullscreen);
+        setInterval(checkFullscreen, 500);
+    </script>
+</body>
+</html>

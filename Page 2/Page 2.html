@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel</title>
+    <link rel="stylesheet" href="./Page 2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="black-screen">
+        <h1>Please press F11 to continue</h1>
+    </div>
+
+    <div class="board-wrapper">
+        <div class="grid-container">
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Аджай.png" alt="Картинка 1">
+                </a>
+                <div class="text">Син Кірата прожив на Заході занадто довго, щоб бути одним з нас. Великодушний король Мін готовий розповісти йому все про рідний край і перетворити Аджая Гейла на гідного громадянина Кірата.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Амита.png" alt="Картинка 2">
+                </a>
+                <div class="text">Гріховне дитя Півночі, яке покинуло свій дім і підняло зброю проти своєї батьківщини. Разом із Сабалом вона становить незграбного двоголового слона на чолі Золотого шляху. Озброєна і дуже небезпечна.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Бхадра.png" alt="Картинка 3">
+                </a>
+                <div class="text">Слабоумні і забобонні кіратці знають, що ця дівчинка — втілення нашої землі, але їх так звана «Тарун Матара» не зможе дарувати народу тієї гордості, яку вселяє Пейган Мін.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Сабал.png" alt="Картинка 4">
+                </a>
+                <div class="text">Сабал — південець, і друга голова незграбного слона на чолі Золотого шляху. Він тягне в один бік, Аміта ж — в інший, погрожуючи розірвати Кірат. За будь-яку допомогу в затриманні обіцяна щедра нагорода.</div>
+            </div>
+            
+        </div>
+        
+        <a href="../Page 1/Page 1.html" class="custom-btn btn-back">
+            <span></span>Назад
+        </a>
+
+        <a href="../Page 3/Page 3.html" class="custom-btn btn-next">
+            <span></span>Вперед
+        </a>
+    </div>
+
+    <script>
+        function checkFullscreen() {
+            const blackScreen = document.getElementById('black-screen');
+            
+            // 1. Спрашиваем у браузера напрямую
+            const isBrowserFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+
+            // 2. Геометрия (Разница высоты окна и монитора)
+            const heightDiff = Math.abs(window.screen.height - window.innerHeight);
+            const isHeightFullscreen = heightDiff < 20;
+
+            // Логика переключения
+            if (isBrowserFullscreen || isHeightFullscreen) {
+                blackScreen.classList.add('hidden');
+            } else {
+                blackScreen.classList.remove('hidden');
+            }
+        }
+
+        // Слушаем изменения
+        window.addEventListener('resize', checkFullscreen);
+        window.addEventListener('load', checkFullscreen);
+        
+        // Дополнительная страховка: проверка каждые 500мс
+        setInterval(checkFullscreen, 500);
+    </script>
+</body>
+</html>

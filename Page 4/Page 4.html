@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel</title>
+    <link rel="stylesheet" href="./Page 4.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="black-screen">
+        <h1>Please press F11 to continue</h1>
+    </div>
+
+    <div class="board-wrapper">
+        <div class="grid-container">
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Пол.png" alt="Картинка 9">
+                </a>
+                <div class="text">Серце губернатора Хармона зворушили лиха нашої країни, він щиро полюбив її народ і звичаї. Він покинув свою рідну Америку, щоб тут провести свої дні. Найбільше він прагнув миру для півдня, і, щоб його досягти, вів переговори з терористами із Золотого шляху.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Пэйган Мин.png" alt="Картинка 10">
+                </a>
+                <div class="text">Наш великий і славний король, який ризикував своїм життям і здоров'ям, щоб звільнити Кірат від кайданів минулого. Він пожертвував усім заради своєї другої батьківщини і любить її народ, як своїх дітей. Нехай осяє вас світло Пейгана.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Нур.png" alt="Картинка 11">
+                </a>
+                <div class="text">Материнська ніжність, яку Нур відчуває до Кірата, не знає меж. Вона охоплює всіх, будь то людина чи тварина. Як орлиця над орленям, вона зробить все, що завгодно, щоб захистити своїх і вберегти їх від зла. Відвідайте Арену Шанат — і ви все побачите самі.</div>
+            </div>
+
+            <div class="item">
+                <a href="#" class="icon-link" target="_blank">
+                    <img src="./png/Юма.png" alt="Картинка 12">
+                </a>
+                <div class="text">Права рука Пейгана, яка керує елітною Королівською гвардією. Вона використовує свої знання про природу і психологію людини, щоб зцілити всі шрами Кірата — добротою і розумінням.</div>
+            </div>
+
+        </div>
+
+        <a href="../Page 3/Page 3.html" class="custom-btn btn-back">
+            <span></span>Назад
+        </a>
+
+        <a href="../Page 5/Page 5.html" class="custom-btn btn-next">
+            <span></span>Почати
+        </a>
+    </div>
+
+    <script>
+        function checkFullscreen() {
+            const blackScreen = document.getElementById('black-screen');
+
+            // 1. Проверка через API браузера
+            const isBrowserFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+
+            // 2. Проверка через геометрию окна
+            const heightDiff = Math.abs(window.screen.height - window.innerHeight);
+            const isHeightFullscreen = heightDiff < 20;
+
+            if (isBrowserFullscreen || isHeightFullscreen) {
+                blackScreen.classList.add('hidden');
+            } else {
+                blackScreen.classList.remove('hidden');
+            }
+        }
+
+        window.addEventListener('resize', checkFullscreen);
+        window.addEventListener('load', checkFullscreen);
+        setInterval(checkFullscreen, 500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* =========================================
+   1. ОСНОВНЫЕ НАСТРОЙКИ
+   ========================================= */
+   body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* =========================================
+   2. ФОН
+   ========================================= */
+.full-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* cover обрежет края, чтобы заполнить экран. 
+       contain покажет картинку целиком с черными полосами. 
+       Выбери, что тебе важнее. */
+    object-fit: cover; 
+    z-index: -1;
+}
+
+/* =========================================
+   3. КНОПКА "ВПЕРЕД" (Стиль с уголками)
+   ========================================= */
+.custom-btn {
+    position: absolute;
+    /* Позиция: Снизу Справа */
+    bottom: 50px; 
+    right: 50px;
+    
+    width: 180px;
+    height: 50px;
+    background: #232323; /* Темный фон кнопки */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #FF0; /* Желтый текст */
+    font-size: 20px;
+    font-family: verdana, sans-serif;
+    letter-spacing: 4px;
+    z-index: 10;
+    transition: 0.5s;
+}
+
+/* УГОЛКИ (Анимация) */
+.custom-btn:before,
+.custom-btn:after,
+.custom-btn span:before,
+.custom-btn span:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FF0; /* Желтые уголки */
+    transition: 1s;
+    mix-blend-mode: hue;
+}
+
+/* Позиции уголков */
+.custom-btn:before { top: -2px; left: -2px; }
+.custom-btn:after { top: -2px; right: -2px; }
+.custom-btn span:before { bottom: -2px; left: -2px; }
+.custom-btn span:after { bottom: -2px; right: -2px; }
+
+/* Эффект при наведении (удлинение уголков) */
+.custom-btn:hover:before,
+.custom-btn:hover:after,
+.custom-btn:hover span:before,
+.custom-btn:hover span:after {
+    width: calc(180px / 2);
+    height: calc(50px / 2);
+}
+
+/* =========================================
+   4. ЧЕРНЫЙ ЭКРАН (F11)
+   ========================================= */
+#black-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#black-screen.hidden {
+    opacity: 0;
+    visibility: hidden;      
+    pointer-events: none;    
+}
+
+@media all and (display-mode: fullscreen) {
+    #black-screen {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}

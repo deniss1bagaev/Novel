@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel</title>
+    <link rel="stylesheet" type="text/css" href="./Page 1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="black-screen">
+        <h1>Please press F11 to continue</h1>
+    </div>
+
+    <div class="wrapper">
+        <div class="full-screen">
+            <div class="full-screen-body">
+                <div class="main-text">
+                    <form action="../Page 2/Page 2.html">
+                        <a href="../Page 2/Page 2.html" class="btn">Розпочати</a>
+                    </form>
+                </div>
+            </div>
+            
+            <img src="./Заставка.png" class="bg-image" alt="Фон">
+        </div>
+    </div>
+    
+    <script>
+        function checkFullscreen() {
+            const blackScreen = document.getElementById('black-screen');
+            
+            // 1. Спрашиваем у браузера напрямую
+            const isBrowserFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+
+            // 2. Геометрия (Разница высоты окна и монитора)
+            // Если разница меньше 20px - значит панелей нет, это полный экран
+            const heightDiff = Math.abs(window.screen.height - window.innerHeight);
+            const isHeightFullscreen = heightDiff < 20;
+
+            // Логика переключения
+            if (isBrowserFullscreen || isHeightFullscreen) {
+                // Если полный экран — добавляем класс .hidden (CSS сам всё плавно скроет)
+                blackScreen.classList.add('hidden');
+            } else {
+                // Если вышли из полного экрана — убираем класс (CSS сам всё плавно покажет)
+                blackScreen.classList.remove('hidden');
+            }
+        }
+
+        // Слушаем изменения
+        window.addEventListener('resize', checkFullscreen);
+        window.addEventListener('load', checkFullscreen);
+        
+        // Дополнительная страховка: проверка каждые 500мс
+        // Это поможет, если браузер "тупит" с событием resize при выходе из F11
+        setInterval(checkFullscreen, 500);
+    </script>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; width: 0; height: 0;">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+          </filter>
+        </defs>
+      </svg>
+</body>
+</html>

@@ -1,0 +1,122 @@
+/* ... ВЕСЬ ПРЕДЫДУЩИЙ КОД (body, grid-container, item, text и т.д.) ОСТАВЛЯЕМ КАК БЫЛ ... */
+
+/* Копирую только начало файла для контекста, но менять нужно ТОЛЬКО КОНЕЦ: */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: sans-serif; background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; overflow: hidden; }
+.board-wrapper { position: relative; width: 100%; max-height: 100%; aspect-ratio: 16 / 9; background-image: url('./Background.jpg'); background-size: 100% 100%; background-repeat: no-repeat; container-type: inline-size; }
+.grid-container { width: 100%; height: 110%; display: grid; grid-template-columns: 1fr 1fr; padding: 2% 8% 10% 8%; /* Увеличил отступ снизу до 12%, чтобы место под кнопки было */ }
+.item { display: flex; align-items: center; min-width: 0; }
+.icon-link { display: block; width: 40%; height: 70%; margin-right: 2%; background: transparent; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; }
+.icon-link:hover { transform: scale(1.1); filter: drop-shadow(0 0 5px white); }
+.icon-link img { width: 100%; height: 100%; object-fit: contain; }
+.text { font-size: 1.5cqw; font-weight: bold; color: white; font-family: 'Sofia Sans Condensed', sans-serif; white-space: normal; flex: 1; padding-right: 15px; line-height: 1.5; }
+
+
+/* =========================================
+   ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ КНОПОК
+   ========================================= */
+
+/* Общий стиль для обеих кнопок */
+.custom-btn {
+    position: absolute;
+    bottom: 40px; /* Отступ от низа доски */
+    width: 180px;
+    height: 50px;
+    background: #232323;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 50px;
+    color: #FF0;
+    font-size: 20px;
+    font-family: verdana;
+    letter-spacing: 4px;
+    z-index: 10;
+    /* transform: translate(-50%, -50%); <--- УБРАЛИ ЭТО, оно мешает позиционировать по краям */
+}
+
+/* Специфичное положение для кнопки НАЗАД */
+.btn-back {
+    left: 8%; /* Выравниваем по левому краю контента (как padding у grid-container) */
+}
+
+/* Специфичное положение для кнопки ВПЕРЕД */
+.btn-next {
+    right: 8%; /* Выравниваем по правому краю */
+}
+
+/* --- АНИМАЦИЯ УГОЛКОВ (Осталась прежней) --- */
+.custom-btn:before,
+.custom-btn:after,
+.custom-btn span:before,
+.custom-btn span:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FF0;
+    transition: 1s;
+    mix-blend-mode: hue;
+}
+
+.custom-btn:before { top: -2px; left: -2px; }
+.custom-btn:after { top: -2px; right: -2px; }
+.custom-btn span:before { bottom: -2px; left: -2px; }
+.custom-btn span:after { bottom: -2px; right: -2px; }
+
+.custom-btn:hover:before,
+.custom-btn:hover:after,
+.custom-btn:hover span:before,
+.custom-btn:hover span:after {
+    width: calc(180px / 2);
+    height: calc(50px / 2);
+}
+
+/* =========================================
+   ЧЕРНЫЙ ЭКРАН (F11 PROTECTION)
+   ========================================= */
+   #black-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#black-screen.hidden {
+    opacity: 0;
+    visibility: hidden;      
+    pointer-events: none;    
+}
+
+@media all and (display-mode: fullscreen) {
+    #black-screen {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}
