@@ -19,9 +19,11 @@
         <div class="full-screen">
             <div class="full-screen-body">
                 <div class="main-text">
+                    
                     <a href="page2/page2.html" class="btn">
-                        <span>Вперед</span>
+                        Розпочати
                     </a>
+
                 </div>
             </div>
             
@@ -32,31 +34,19 @@
     <script>
         function checkFullscreen() {
             const blackScreen = document.getElementById('black-screen');
-            
-            // 1. Спрашиваем у браузера напрямую
             const isBrowserFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
-
-            // 2. Геометрия (Разница высоты окна и монитора)
-            // Если разница меньше 20px - значит панелей нет, это полный экран
             const heightDiff = Math.abs(window.screen.height - window.innerHeight);
             const isHeightFullscreen = heightDiff < 20;
 
-            // Логика переключения
             if (isBrowserFullscreen || isHeightFullscreen) {
-                // Если полный экран — добавляем класс .hidden (CSS сам всё плавно скроет)
                 blackScreen.classList.add('hidden');
             } else {
-                // Если вышли из полного экрана — убираем класс (CSS сам всё плавно покажет)
                 blackScreen.classList.remove('hidden');
             }
         }
 
-        // Слушаем изменения
         window.addEventListener('resize', checkFullscreen);
         window.addEventListener('load', checkFullscreen);
-        
-        // Дополнительная страховка: проверка каждые 500мс
-        // Это поможет, если браузер "тупит" с событием resize при выходе из F11
         setInterval(checkFullscreen, 500);
     </script>
 
